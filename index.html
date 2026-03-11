@@ -2,51 +2,495 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LT-mem Dataset</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LT-VQA: Multi-Session Temporal Object-Centric QA Dataset</title>
+  <style>
+:root{
+  --bg:#ffffff;
+  --fg:#111;
+  --muted:#666;
+  --line:#e7e7e7;
+  --card:#fafafa;
+  --btn:#f1f1f1;
+  --btnHover:#e6e6e6;
+  --radius:14px;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  color:var(--fg);
+  background:var(--bg);
+}
+
+.hero{
+  padding:48px 16px 22px;
+  text-align:center;
+  border-bottom:1px solid var(--line);
+}
+
+.badge{
+  display:inline-block;
+  padding:6px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:10px;
+}
+
+h1{margin:10px 0 6px; font-size:44px}
+.subtitle{margin:0 0 18px; color:var(--muted); font-size:18px}
+
+.authors{color:var(--fg); margin:10px 0}
+.affil{color:var(--muted); font-size:13px; margin-top:6px}
+
+.links{margin-top:18px}
+.btn{
+  display:inline-block;
+  padding:10px 14px;
+  margin:6px;
+  background:var(--btn);
+  color:var(--fg);
+  text-decoration:none;
+  border-radius:10px;
+  font-weight:700;
+  border:1px solid var(--line);
+  transition:0.15s;
+}
+.btn:hover{background:var(--btnHover)}
+.btn.small{padding:8px 10px; font-size:13px}
+
+.container{
+  max-width:980px;
+  margin:0 auto;
+  padding:26px 16px 40px;
+}
+
+section{margin:34px 0}
+h2{
+  margin:0 0 12px;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--line);
+}
+.muted{color:var(--muted)}
+
+.stats{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap:12px;
+}
+.stat{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  background:var(--card);
+  padding:14px;
+  text-align:center;
+}
+.stat .k{font-size:26px; font-weight:800}
+.stat .l{color:var(--muted); font-size:13px; margin-top:4px}
+
+.group{
+  margin-top:16px;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+}
+.group-h{
+  padding:12px 14px;
+  background:#fff;
+  border-bottom:1px solid var(--line);
+  font-weight:800;
+}
+.grid{
+  display:grid;
+  grid-template-columns: repeat(5, minmax(0,1fr));
+  gap:10px;
+  padding:12px;
+  background:var(--card);
+}
+.cardlink{
+  display:block;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:#fff;
+  text-decoration:none;
+  color:var(--fg);
+}
+.cardlink:hover{background:#f7f7f7}
+.cardlink .t{font-weight:800}
+.cardlink .d{color:var(--muted); font-size:12px; margin-top:6px}
+
+.dl-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:12px;
+}
+.card{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  background:var(--card);
+  padding:14px;
+}
+pre{
+  margin:10px 0 0;
+  padding:12px;
+  overflow:auto;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fff;
+  font-size:13px;
+  line-height:1.6;
+}
+.footer{
+  margin-top:48px;
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* extras */
+.tag{
+  display:inline-block;
+  padding:3px 8px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:700;
+  border:1px solid var(--line);
+  margin-right:4px;
+}
+.tag.move{background:#fff3e0;border-color:#ffd699;color:#b36b00}
+.tag.appear{background:#e8f5e9;border-color:#a5d6a7;color:#2e7d32}
+.tag.disappear{background:#fce4ec;border-color:#f48fb1;color:#c62828}
+.tag.reappear{background:#e3f2fd;border-color:#90caf9;color:#1565c0}
+.tag.none{background:#f5f5f5;border-color:#ddd;color:#555}
+
+.qa-block{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  margin-bottom:10px;
+}
+.qa-head{
+  padding:10px 14px;
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:var(--muted);
+  background:var(--card);
+  border-bottom:1px solid var(--line);
+}
+.qa-row{
+  padding:12px 14px;
+  border-bottom:1px solid var(--line);
+  font-size:14px;
+}
+.qa-row:last-child{border-bottom:none}
+.qa-q{margin-bottom:4px; font-style:italic}
+.qa-a{color:#333; font-weight:600}
+.qa-mem{float:right; font-size:11px; color:var(--muted); font-weight:400; font-style:normal}
+
+.env-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:12px;
+  margin-top:12px;
+}
+.env-card{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  background:var(--card);
+  padding:16px;
+}
+.env-card .name{font-weight:800; font-size:15px; margin-bottom:6px}
+.env-card .desc{font-size:13px; color:var(--muted); margin-bottom:10px}
+.env-stat{font-size:13px; margin:3px 0; color:#333}
+.env-stat span{font-weight:700}
+
+.baseline-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+}
+.baseline-table th,
+.baseline-table td{
+  padding:10px 12px;
+  text-align:left;
+  border-bottom:1px solid var(--line);
+}
+.baseline-table th{
+  background:var(--card);
+  font-size:12px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+.baseline-table tr:last-child td{border-bottom:none}
+.best{font-weight:800; color:#111}
+.na{color:var(--muted); font-style:italic}
+
+@media (max-width: 900px){
+  .stats{grid-template-columns: repeat(2, minmax(0,1fr))}
+  .grid{grid-template-columns: repeat(2, minmax(0,1fr))}
+  .dl-grid{grid-template-columns: 1fr}
+  .env-grid{grid-template-columns: 1fr}
+  h1{font-size:36px}
+}
+  </style>
 </head>
 <body>
-  <header class="hero">
-    <div class="badge">Dataset Page</div>
-    <h1>LT-mem</h1>
-    <p class="subtitle">A Multi-Session Visual Question Answering Dataset in Long-Term Environments</p>
 
-    <div class="authors">
-      <div>Anonymous Authors</div>
+<!-- ───── HERO ───── -->
+<div class="hero">
+  <h1>LT-VQA</h1>
+  <p class="subtitle">Multi-Session Temporal Object-Centric Visual QA Dataset</p>
+  <p class="authors">Anonymous Authors</p>
+  <p class="affil">Submitted to IEEE/RSJ International Conference on Intelligent Robots and Systems 2026</p>
+  <div class="links">
+    <a class="btn" href="#">📄 Paper (arXiv)</a>
+    <a class="btn" href="#">💾 Dataset Download</a>
+    <a class="btn" href="#">💻 Code (GitHub)</a>
+
+  </div>
+</div>
+
+<!-- ───── MAIN ───── -->
+<div class="container">
+
+  <!-- OVERVIEW -->
+  <section>
+    <h2>Overview</h2>
+    <p style="font-size:15px;line-height:1.7;margin:0 0 16px">
+      LT-VQA is a controlled multi-session dataset for evaluating <strong>long-term object-centric scene understanding</strong>.
+      Unlike single-session VQA benchmarks, LT-VQA targets persistent cross-session object identity, event-level state transition annotation,
+      and session-indexed temporal reasoning — enabling questions such as <em>"Where has the green chair been across all sessions?"</em>
+    </p>
+    <div class="stats">
+      <div class="stat"><div class="k">3</div><div class="l">Environments</div></div>
+      <div class="stat"><div class="k">30</div><div class="l">Sessions Total</div></div>
+      <div class="stat"><div class="k">80</div><div class="l">QA Pairs</div></div>
     </div>
+  </section>
 
-    <div class="links">
-      <a class="btn" href="#" target="_blank" rel="noopener">📄 Paper</a>
-      <a class="btn" href="#" target="_blank" rel="noopener">💾 Dataset</a>
-      <a class="btn" href="#" target="_blank" rel="noopener">💻 Code</a>
-      <a class="btn" href="#" target="_blank" rel="noopener">🎥 Video</a>
-    </div>
-  </header>
-
-  <main class="container">
-    <section>
-      <h2>Dataset Statistics</h2>
-      <div class="stats">
-        <div class="stat"><div class="k">3</div><div class="l">Environments</div></div>
-        <div class="stat"><div class="k">30</div><div class="l">Sessions</div></div>
-        <div class="stat"><div class="k">VQA</div><div class="l">Task</div></div>
-        <div class="stat"><div class="k">RGB</div><div class="l">(add modalities)</div></div>
+  <!-- ENVIRONMENTS -->
+  <section>
+    <h2>Environments</h2>
+    <div class="env-grid">
+      <div class="env-card">
+        <div class="name">🏠 Lab-S</div>
+        <div class="desc">Compact indoor room — Instance History Tracking</div>
+        <div class="env-stat">Sessions: <span>10</span></div>
+        <div class="env-stat">Frames/Session: <span>116–159</span></div>
+        <div class="env-stat">Duration/Session: <span>1.6–2.1 min</span></div>
+        <div class="env-stat">Tracked Objects: <span>10</span></div>
+        <div class="env-stat">Capture Device: <span>iPhone 17 Pro</span></div>
       </div>
-    </section>
+      <div class="env-card">
+        <div class="name">🏢 Lab-L</div>
+        <div class="desc">Larger indoor space — Instance History Tracking</div>
+        <div class="env-stat">Sessions: <span>10</span></div>
+        <div class="env-stat">Frames/Session: <span>115–183</span></div>
+        <div class="env-stat">Duration/Session: <span>2.6–3.3 min</span></div>
+        <div class="env-stat">Tracked Objects: <span>10</span></div>
+        <div class="env-stat">Capture Device: <span>iPhone 15 Pro</span></div>
+      </div>
+      <div class="env-card">
+        <div class="name">🚗 Parking Lot</div>
+        <div class="desc">Outdoor scene — Spatial Statistics</div>
+        <div class="env-stat">Sessions: <span>10</span></div>
+        <div class="env-stat">Frames/Session: <span>124–195</span></div>
+        <div class="env-stat">Duration/Session: <span>2.2–3.2 min</span></div>
+        <div class="env-stat">Task: <span>Aggregate Occupancy</span></div>
+        <div class="env-stat">Capture Device: <span>iPhone 15 Pro</span></div>
+      </div>
+    </div>
+  </section>
 
-    <section>
-      <h2>Dataset Sequences</h2>
-      <p class="muted">Click on any session to open its page.</p>
+  <!-- EVENT TAXONOMY -->
+  <section>
+    <h2>Event Taxonomy</h2>
+    <p class="muted" style="font-size:14px;margin:0 0 12px">
+      Ground-truth annotations cover 5 atomic event types per object per session, plus 4 compound query types requiring multi-session reasoning.
+    </p>
+    <div class="group">
+      <div class="group-h">Atomic Events</div>
+      <div style="padding:12px;background:var(--card);display:grid;grid-template-columns:repeat(5,1fr);gap:10px;">
+        <div class="cardlink">
+          <div class="t"><span class="tag appear">APPEAR</span></div>
+          <div class="d">Object first observed in session S<sub>t</sub></div>
+        </div>
+        <div class="cardlink">
+          <div class="t"><span class="tag disappear">DISAPPEAR</span></div>
+          <div class="d">Object no longer detected after S<sub>t</sub></div>
+        </div>
+        <div class="cardlink">
+          <div class="t"><span class="tag move">MOVE</span></div>
+          <div class="d">Centroid displacement beyond threshold</div>
+        </div>
+        <div class="cardlink">
+          <div class="t"><span class="tag reappear">RE-APPEAR</span></div>
+          <div class="d">Object returns after prior disappearance</div>
+        </div>
+        <div class="cardlink">
+          <div class="t"><span class="tag none">NONE</span></div>
+          <div class="d">No state change detected in session S<sub>t</sub></div>
+        </div>
+      </div>
+    </div>
+    <div class="group" style="margin-top:10px">
+      <div class="group-h">Compound Query Types (Multi-Session Reasoning)</div>
+      <div style="padding:12px;background:var(--card);display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+        <div class="cardlink">
+          <div class="t">Trajectory</div>
+          <div class="d">Sequence of transitions across all sessions</div>
+        </div>
+        <div class="cardlink">
+          <div class="t">Volatility</div>
+          <div class="d">Frequency and magnitude of changes</div>
+        </div>
+        <div class="cardlink">
+          <div class="t">Temporal Localization</div>
+          <div class="d">Identifying when a change occurred</div>
+        </div>
+        <div class="cardlink">
+          <div class="t">Counterfactual</div>
+          <div class="d">Comparing states at two specific sessions</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <div id="sequence-root"></div>
-    </section>
+  <!-- QA EXAMPLES -->
+  <section>
+    <h2>Example QA Pairs</h2>
+    <div class="qa-block">
+      <div class="qa-head">Delta Memory — Event History</div>
+      <div class="qa-row">
+        <div class="qa-q">Q: "When did the scissor first appear?" <span class="qa-mem">Delta Memory</span></div>
+        <div class="qa-a">A: It first appeared in Session 3.</div>
+      </div>
+      <div class="qa-row">
+        <div class="qa-q">Q: "What happened to the robot dog at Session 6?" <span class="qa-mem">Delta Memory</span></div>
+        <div class="qa-a">A: At Session 6, the robot dog moved from (−0.81, 0.44, 1.77) to (−0.96, 2.52, −2.27).</div>
+      </div>
+    </div>
+    <div class="qa-block">
+      <div class="qa-head">Live Memory — Current State</div>
+      <div class="qa-row">
+        <div class="qa-q">Q: "Where did the trashbin end up after all sessions?" <span class="qa-mem">Live Memory</span></div>
+        <div class="qa-a">A: At the end (S10), the trashbin was at (−0.64, 0.52, 1.50).</div>
+      </div>
+      <div class="qa-row">
+        <div class="qa-q">Q: "Where is the green chair now?" <span class="qa-mem">Live Memory</span></div>
+        <div class="qa-a">A: At (2.96, 0.88, 0.25) as of Session 10.</div>
+      </div>
+    </div>
+    <div class="qa-block">
+      <div class="qa-head">Meta Memory — Long-Term Statistics</div>
+      <div class="qa-row">
+        <div class="qa-q">Q: "Can I use the printer as a navigation landmark?" <span class="qa-mem">Meta Memory</span></div>
+        <div class="qa-a">A: Yes. Volatility 0.02, highly stable. Use its position at (−1.75, 0.28, 0.50) from S1 as reference.</div>
+      </div>
+      <div class="qa-row">
+        <div class="qa-q">Q: "Which object moved most frequently?" <span class="qa-mem">Meta Memory</span></div>
+        <div class="qa-a">A: The brown basket (4 moves).</div>
+      </div>
+    </div>
+  </section>
 
-    <footer class="footer">
-      © 2026 Your Lab. All rights reserved.
-    </footer>
-  </main>
+  <!-- BASELINE RESULTS -->
+  <section>
+    <h2>Benchmark Results</h2>
+    <p class="muted" style="font-size:14px;margin:0 0 12px">
+      Results on Lab-S and Lab-L combined. LT-Mem outperforms all baselines while consuming an order of magnitude fewer tokens.
+    </p>
+    <div class="card" style="padding:0;overflow:hidden">
+      <table class="baseline-table">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Event F1 ↑</th>
+            <th>QA-Event ↑</th>
+            <th>QA-Freq ↑</th>
+            <th>Tokens ↓</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Geometric Only</td>
+            <td>0.655</td>
+            <td class="na">N/A</td>
+            <td class="na">N/A</td>
+            <td class="na">—</td>
+          </tr>
+          <tr>
+            <td>Text-Batch</td>
+            <td>0.230</td>
+            <td>0.140</td>
+            <td>0.033</td>
+            <td>1,147K</td>
+          </tr>
+          <tr>
+            <td>VLM-Batch</td>
+            <td>0.680</td>
+            <td>0.720</td>
+            <td>0.467</td>
+            <td>1,219K</td>
+          </tr>
+          <tr>
+            <td><strong>LT-Mem (Qwen2.5)</strong></td>
+            <td class="best">0.850</td>
+            <td class="best">0.880</td>
+            <td class="best">0.567</td>
+            <td class="best">125K</td>
+          </tr>
+          <tr>
+            <td><strong>LT-Mem (Gemini 2.5)</strong></td>
+            <td class="best">0.860</td>
+            <td class="best">0.880</td>
+            <td class="best">0.667</td>
+            <td>284K</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-  <script src="site.js"></script>
+  <!-- DOWNLOAD -->
+  <section>
+    <h2>Download</h2>
+    <div class="dl-grid">
+      <div class="card">
+        <div style="font-weight:800;margin-bottom:6px">📦 Full Dataset</div>
+        <div class="muted" style="font-size:13px;margin-bottom:12px">
+          Multi-session RGB video, aligned poses, per-object annotations, and temporal QA pairs for all 3 environments.
+        </div>
+        <a class="btn" href="#" style="display:inline-block">Download (coming soon)</a>
+      </div>
+      <div class="card">
+        <div style="font-weight:800;margin-bottom:6px">🗂️ Annotation Format</div>
+        <div class="muted" style="font-size:13px;margin-bottom:4px">
+          Per-session event labels, object centroids, volatility scores, and QA pairs in JSON.
+        </div>
+        <pre>{
+  "session": "S6",
+  "object": "robot_dog",
+  "event": "MOVE",
+  "from": [-0.81, 0.44, 1.77],
+  "to": [-0.96, 2.52, -2.27],
+  "displacement_m": 4.6
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <a href="https://ltmem-dataset.github.io/" style="color:var(--muted)">ltmem-dataset.github.io</a>
+  </div>
+
+</div>
 </body>
 </html>

@@ -134,6 +134,8 @@ pre{
   border:1px solid var(--line);
   border-radius:12px;
   background:#fff;
+  font-size:13px;
+  line-height:1.6;
 }
 .footer{
   margin-top:48px;
@@ -142,9 +144,80 @@ pre{
   font-size:13px;
 }
 
+/* ── 추가 스타일 ── */
+
+/* 환경 카드 */
+.env-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:12px;
+}
+.env-card{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  background:var(--card);
+  padding:16px;
+}
+.env-card .name{font-weight:800; font-size:15px; margin-bottom:6px}
+.env-card .desc{font-size:13px; color:var(--muted); margin-bottom:10px}
+.env-stat{font-size:13px; margin:3px 0; color:#333}
+.env-stat span{font-weight:700}
+
+/* QA 블록 */
+.qa-block{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  margin-bottom:10px;
+}
+.qa-head{
+  padding:10px 14px;
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:var(--muted);
+  background:var(--card);
+  border-bottom:1px solid var(--line);
+}
+.qa-row{
+  padding:12px 14px;
+  border-bottom:1px solid var(--line);
+  font-size:14px;
+}
+.qa-row:last-child{border-bottom:none}
+.qa-q{margin-bottom:4px; font-style:italic}
+.qa-a{color:#333; font-weight:600}
+.qa-mem{float:right; font-size:11px; color:var(--muted); font-weight:400; font-style:normal}
+
+/* 결과 테이블 */
+.result-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+}
+.result-table th,
+.result-table td{
+  padding:10px 12px;
+  text-align:left;
+  border-bottom:1px solid var(--line);
+}
+.result-table th{
+  background:var(--card);
+  font-size:12px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+.result-table tr:last-child td{border-bottom:none}
+.best{font-weight:800}
+.na{color:var(--muted); font-style:italic}
+
 @media (max-width: 900px){
   .stats{grid-template-columns: repeat(2, minmax(0,1fr))}
   .grid{grid-template-columns: repeat(2, minmax(0,1fr))}
   .dl-grid{grid-template-columns: 1fr}
+  .env-grid{grid-template-columns: 1fr}
   h1{font-size:36px}
 }
