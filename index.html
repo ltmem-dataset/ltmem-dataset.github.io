@@ -273,7 +273,7 @@ pre{
     <h2>Environments</h2>
     <div class="env-grid">
       <div class="env-card" style="padding:0;overflow:hidden">
-        <img src="lab-S.png" style="width:100%;display:block;" />
+        <img src="lab-s.png" style="width:100%;display:block;" />
         <div style="padding:16px">
           <div class="name">🏠 Lab-S</div>
           <div class="desc">Compact indoor room — Instance History Tracking</div>
@@ -400,18 +400,29 @@ pre{
     </div>
   </section>
 
+  <!-- QUALITATIVE RESULTS -->
+  <section>
+    <h2>Qualitative Results</h2>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="card" style="padding:0;overflow:hidden">
+        <img src="robotdog.png" style="width:100%;display:block;" />
+      </div>
+      <div class="card" style="padding:0;overflow:hidden">
+        <img src="greenchair.png" style="width:100%;display:block;" />
+      </div>
+    </div>
+  </section>
   <!-- QA EXAMPLES -->
   <section>
     <h2>Example QA Pairs</h2>
     <div class="qa-block">
-      <div class="qa-head">Delta Memory — Event History</div>
-      <div class="qa-row">
-        <div class="qa-q">Q: "When did the scissor first appear?" <span class="qa-mem">Delta Memory</span></div>
-        <div class="qa-a">A: It first appeared in Session 3.</div>
-      </div>
       <div class="qa-row">
         <div class="qa-q">Q: "What happened to the robot dog at Session 6?" <span class="qa-mem">Delta Memory</span></div>
         <div class="qa-a">A: At Session 6, the robot dog moved from (−0.81, 0.44, 1.77) to (−0.96, 2.52, −2.27).</div>
+      </div>
+      <div class="qa-row">
+        <div class="qa-q">Q: "Where has the green chair been across all sessions?" <span class="qa-mem">Delta Memory</span></div>
+        <div class="qa-a">A: S1: Appear (2.8, 0.9, 0.2) → S5: Move (−1.0, 1.0, −1.2) → S8: Disappear → S9: Re-Appear (2.6, 0.9, 0.1).</div>
       </div>
     </div>
     <div class="qa-block">
@@ -428,15 +439,16 @@ pre{
     <div class="qa-block">
       <div class="qa-head">Meta Memory — Long-Term Statistics</div>
       <div class="qa-row">
-        <div class="qa-q">Q: "Can I use the printer as a navigation landmark?" <span class="qa-mem">Meta Memory</span></div>
-        <div class="qa-a">A: Yes. Volatility 0.02, highly stable. Use its position at (−1.75, 0.28, 0.50) from S1 as reference.</div>
-      </div>
-      <div class="qa-row">
         <div class="qa-q">Q: "Which object moved most frequently?" <span class="qa-mem">Meta Memory</span></div>
         <div class="qa-a">A: The brown basket (4 moves).</div>
       </div>
+      <div class="qa-row">
+        <div class="qa-q">Q: "How many times did the robot dog move?" <span class="qa-mem">Meta Memory</span></div>
+        <div class="qa-a">A: The robot dog moved 2 times over 10 sessions. Classified as semi-static.</div>
+      </div>
     </div>
   </section>
+  ```
 
   <!-- BASELINE RESULTS -->
   <section>
@@ -493,19 +505,6 @@ pre{
           </tr>
         </tbody>
       </table>
-    </div>
-  </section>
-
-  <!-- QUALITATIVE RESULTS -->
-  <section>
-    <h2>Qualitative Results</h2>
-    <div class="dl-grid">
-      <div class="card" style="padding:0;overflow:hidden">
-        <img src="robotdog.png" style="width:100%;display:block;" />
-      </div>
-      <div class="card" style="padding:0;overflow:hidden">
-        <img src="greenchair.png" style="width:100%;display:block;" />
-      </div>
     </div>
   </section>
 
