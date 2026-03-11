@@ -78,8 +78,10 @@ h2{
 
 .stats{
   display:grid;
-  grid-template-columns: repeat(4, minmax(0,1fr));
+  grid-template-columns: repeat(3, minmax(0,1fr));
   gap:12px;
+  max-width:700px;
+  margin:0 auto;
 }
 .stat{
   border:1px solid var(--line);
@@ -151,7 +153,6 @@ pre{
   font-size:13px;
 }
 
-/* extras */
 .tag{
   display:inline-block;
   padding:3px 8px;
@@ -243,15 +244,13 @@ pre{
 </head>
 <body>
 
-<!-- ───── HERO ───── -->
+<!-- HERO -->
 <div class="hero">
   <h1>LT-VQA</h1>
   <p class="subtitle">Multi-Session Temporal Object-Centric Visual QA Dataset</p>
   <p class="authors">Anonymous Authors</p>
-  <p class="affil">Submitted to IEEE/RSJ International Conference on Intelligent Robots and Systems 2026</p>
 </div>
 
-<!-- ───── MAIN ───── -->
 <div class="container">
 
   <!-- OVERVIEW -->
@@ -299,6 +298,41 @@ pre{
         <div class="env-stat">Duration/Session: <span>2.2–3.2 min</span></div>
         <div class="env-stat">Task: <span>Aggregate Occupancy</span></div>
         <div class="env-stat">Capture Device: <span>iPhone 15 Pro</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OBJECT LIST -->
+  <section>
+    <h2>Tracked Objects</h2>
+    <div class="group">
+      <div class="group-h">Lab-S</div>
+      <div style="padding:12px;background:var(--card);display:flex;flex-wrap:wrap;gap:8px;">
+        <span class="tag none">robot dog</span>
+        <span class="tag none">blue totebag</span>
+        <span class="tag none">trashbin</span>
+        <span class="tag none">white desk</span>
+        <span class="tag none">stick vacuum cleaner</span>
+        <span class="tag none">flower</span>
+        <span class="tag none">coffee machine</span>
+        <span class="tag none">white chair</span>
+        <span class="tag none">fire extinguisher</span>
+        <span class="tag none">fridge</span>
+      </div>
+    </div>
+    <div class="group" style="margin-top:10px">
+      <div class="group-h">Lab-L</div>
+      <div style="padding:12px;background:var(--card);display:flex;flex-wrap:wrap;gap:8px;">
+        <span class="tag none">brown basket</span>
+        <span class="tag none">potted plant</span>
+        <span class="tag none">green chair</span>
+        <span class="tag none">printer</span>
+        <span class="tag none">robot dog</span>
+        <span class="tag none">silver headphone</span>
+        <span class="tag none">scissor</span>
+        <span class="tag none">sofa</span>
+        <span class="tag none">white board</span>
+        <span class="tag none">vacuum</span>
       </div>
     </div>
   </section>
@@ -450,6 +484,25 @@ pre{
           </tr>
         </tbody>
       </table>
+    </div>
+  </section>
+
+  <!-- QUALITATIVE RESULTS -->
+  <section>
+    <h2>Qualitative Results</h2>
+    <div class="dl-grid">
+      <div class="card" style="padding:0;overflow:hidden">
+        <div style="aspect-ratio:16/9;background:var(--card);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;">
+          이미지 교체 예정
+        </div>
+        <div style="padding:12px;font-size:13px;color:var(--muted)">Fig. 1 — 설명 넣기</div>
+      </div>
+      <div class="card" style="padding:0;overflow:hidden">
+        <div style="aspect-ratio:16/9;background:var(--card);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;">
+          이미지 교체 예정
+        </div>
+        <div style="padding:12px;font-size:13px;color:var(--muted)">Fig. 2 — 설명 넣기</div>
+      </div>
     </div>
   </section>
 
