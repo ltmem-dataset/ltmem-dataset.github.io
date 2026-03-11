@@ -513,36 +513,62 @@ pre{
 
   <!-- DOWNLOAD -->
   <section>
-    <h2>Download</h2>
-    <div class="dl-grid">
-      <div class="card">
-        <div style="font-weight:800;margin-bottom:6px">📦 Full Dataset</div>
-        <div class="muted" style="font-size:13px;margin-bottom:12px">
-          Multi-session RGB video, aligned poses, per-object annotations, and temporal QA pairs for all 3 environments.
+      <h2>Download</h2>
+      <div class="dl-grid">
+        <div class="card">
+          <div style="font-weight:800;margin-bottom:6px">📦 Full Dataset</div>
+          <div class="muted" style="font-size:13px;margin-bottom:12px">
+            Multi-session RGB video, aligned poses, per-object annotations, and temporal QA pairs for all 3 environments.
+          </div>
+          <a class="btn" href="#" style="display:inline-block">Download (coming soon)</a>
         </div>
-        <a class="btn" href="#" style="display:inline-block">Download (coming soon)</a>
-      </div>
-      <div class="card">
-        <div style="font-weight:800;margin-bottom:6px">🗂️ Annotation Format</div>
-        <div class="muted" style="font-size:13px;margin-bottom:4px">
-          Per-session event labels, object centroids, volatility scores, and QA pairs in JSON.
+        <div class="card">
+          <div style="font-weight:800;margin-bottom:6px">🗂️ Annotation Format</div>
+          <div class="muted" style="font-size:13px;margin-bottom:8px">
+            Per-session event labels, object centroids, volatility scores, and QA pairs in JSON.
+          </div>
+          <div style="display:flex;gap:6px;margin-bottom:8px;">
+            <button class="btn small" onclick="showTab('delta')" id="btn-delta" style="background:var(--btnHover)">Delta Memory</button>
+            <button class="btn small" onclick="showTab('live')" id="btn-live">Live Memory</button>
+            <button class="btn small" onclick="showTab('meta')" id="btn-meta">Meta Memory</button>
+          </div>
+          <pre id="tab-delta">{
+    "session": "S6",
+    "object": "robot_dog",
+    "event": "MOVE",
+    "from": [-0.81, 0.44, 1.77],
+    "to": [-0.96, 2.52, -2.27],
+    "displacement_m": 4.55
+  }</pre>
+          <pre id="tab-live" style="display:none">{
+    "object": "robot_dog",
+    "position": [-2.1, 0.3, 2.0],
+    "last_updated": "S10",
+    "status": "confirmed"
+  }</pre>
+          <pre id="tab-meta" style="display:none">{
+    "object": "robot_dog",
+    "volatility": 0.45,
+    "move_count": 2,
+    "classification": "semi-static"
+  }</pre>
         </div>
-        <pre>{
-  "session": "S6",
-  "object": "robot_dog",
-  "event": "MOVE",
-  "from": [-0.81, 0.44, 1.77],
-  "to": [-0.96, 2.52, -2.27],
-  "displacement_m": 4.6
-}</pre>
       </div>
+    </section>
+
+    <script>
+    function showTab(name) {
+      ["delta","live","meta"].forEach(t => {
+        document.getElementById("tab-"+t).style.display = t === name ? "block" : "none";
+        document.getElementById("btn-"+t).style.background = t === name ? "var(--btnHover)" : "var(--btn)";
+      });
+    }
+    </script>
+
+    <div class="footer">
+      <a href="https://ltmem-dataset.github.io/" style="color:var(--muted)">ltmem-dataset.github.io</a>
     </div>
-  </section>
 
-  <div class="footer">
-    <a href="https://ltmem-dataset.github.io/" style="color:var(--muted)">ltmem-dataset.github.io</a>
   </div>
-
-</div>
-</body>
-</html>
+  </body>
+  </html>
