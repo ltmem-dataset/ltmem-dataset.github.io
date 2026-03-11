@@ -343,60 +343,6 @@ pre{
     </div>
   </section>
 
-  <!-- EVENT TAXONOMY -->
-  <section>
-    <h2>Event Taxonomy</h2>
-    <p class="muted" style="font-size:14px;margin:0 0 12px">
-      Ground-truth annotations cover 5 atomic event types per object per session, plus 4 compound query types requiring multi-session reasoning.
-    </p>
-    <div class="group">
-      <div class="group-h">Atomic Events</div>
-      <div style="padding:12px;background:var(--card);display:grid;grid-template-columns:repeat(5,1fr);gap:10px;">
-        <div class="cardlink">
-          <div class="t"><span class="tag appear">APPEAR</span></div>
-          <div class="d">Object first observed in session S<sub>t</sub></div>
-        </div>
-        <div class="cardlink">
-          <div class="t"><span class="tag disappear">DISAPPEAR</span></div>
-          <div class="d">Object no longer detected after S<sub>t</sub></div>
-        </div>
-        <div class="cardlink">
-          <div class="t"><span class="tag move">MOVE</span></div>
-          <div class="d">Centroid displacement beyond threshold</div>
-        </div>
-        <div class="cardlink">
-          <div class="t"><span class="tag reappear">RE-APPEAR</span></div>
-          <div class="d">Object returns after prior disappearance</div>
-        </div>
-        <div class="cardlink">
-          <div class="t"><span class="tag none">NONE</span></div>
-          <div class="d">No state change detected in session S<sub>t</sub></div>
-        </div>
-      </div>
-    </div>
-    <div class="group" style="margin-top:10px">
-      <div class="group-h">Compound Query Types (Multi-Session Reasoning)</div>
-      <div style="padding:12px;background:var(--card);display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
-        <div class="cardlink">
-          <div class="t">Trajectory</div>
-          <div class="d">Sequence of transitions across all sessions</div>
-        </div>
-        <div class="cardlink">
-          <div class="t">Volatility</div>
-          <div class="d">Frequency and magnitude of changes</div>
-        </div>
-        <div class="cardlink">
-          <div class="t">Temporal Localization</div>
-          <div class="d">Identifying when a change occurred</div>
-        </div>
-        <div class="cardlink">
-          <div class="t">Counterfactual</div>
-          <div class="d">Comparing states at two specific sessions</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- QUALITATIVE RESULTS -->
   <section>
     <h2>Qualitative Results</h2>
@@ -447,64 +393,6 @@ pre{
         <div class="qa-q">Q: "How many times did the robot dog move?" <span class="qa-mem">Meta Memory</span></div>
         <div class="qa-a">A: The robot dog moved 2 times over 10 sessions. Classified as semi-static.</div>
       </div>
-    </div>
-  </section>
-
-  <!-- BASELINE RESULTS -->
-  <section>
-    <h2>Results</h2>
-    <p class="muted" style="font-size:14px;margin:0 0 12px">
-      Results on Lab-S and Lab-L combined. LT-Mem outperforms all baselines while consuming an order of magnitude fewer tokens.
-    </p>
-    <div class="card" style="padding:0;overflow:hidden">
-      <table class="baseline-table">
-        <thead>
-          <tr>
-            <th>Method</th>
-            <th>Event F1 ↑</th>
-            <th>QA-Event ↑</th>
-            <th>QA-Freq ↑</th>
-            <th>Tokens ↓</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Geometric Only</td>
-            <td>0.655</td>
-            <td class="na">N/A</td>
-            <td class="na">N/A</td>
-            <td class="na">—</td>
-          </tr>
-          <tr>
-            <td>Text-Batch</td>
-            <td>0.230</td>
-            <td>0.140</td>
-            <td>0.033</td>
-            <td>1,147K</td>
-          </tr>
-          <tr>
-            <td>VLM-Batch</td>
-            <td>0.680</td>
-            <td>0.720</td>
-            <td>0.467</td>
-            <td>1,219K</td>
-          </tr>
-          <tr>
-            <td><strong>LT-Mem (Qwen2.5)</strong></td>
-            <td class="best">0.850</td>
-            <td class="best">0.880</td>
-            <td class="best">0.567</td>
-            <td class="best">125K</td>
-          </tr>
-          <tr>
-            <td><strong>LT-Mem (Gemini 2.5)</strong></td>
-            <td class="best">0.860</td>
-            <td class="best">0.880</td>
-            <td class="best">0.667</td>
-            <td>284K</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </section>
 
