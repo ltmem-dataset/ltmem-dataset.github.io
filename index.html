@@ -233,12 +233,51 @@ pre{
 .best{font-weight:800; color:#111}
 .na{color:var(--muted); font-style:italic}
 
+.tracked-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
+  gap:12px;
+  padding:12px;
+  background:var(--card);
+}
+.tracked-item{
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fff;
+  overflow:hidden;
+  text-align:center;
+}
+.tracked-thumb{
+  aspect-ratio:1;
+  background:#ececec;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px;
+}
+.tracked-thumb img{
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+}
+.tracked-name{
+  padding:8px 6px 10px;
+  font-size:12px;
+  font-weight:600;
+  color:#555;
+  line-height:1.25;
+  border-top:1px solid var(--line);
+}
+
 @media (max-width: 900px){
   .stats{grid-template-columns: repeat(2, minmax(0,1fr))}
   .grid{grid-template-columns: repeat(2, minmax(0,1fr))}
   .dl-grid{grid-template-columns: 1fr}
   .env-grid{grid-template-columns: 1fr}
   h1{font-size:36px}
+  .tracked-grid{grid-template-columns: repeat(auto-fill, minmax(96px, 1fr))}
 }
   </style>
 </head>
@@ -313,32 +352,32 @@ pre{
     <h2>Tracked Objects</h2>
     <div class="group">
       <div class="group-h">Lab-S</div>
-      <div style="padding:12px;background:var(--card);display:flex;flex-wrap:wrap;gap:8px;">
-        <span class="tag none">robot dog</span>
-        <span class="tag none">blue totebag</span>
-        <span class="tag none">trashbin</span>
-        <span class="tag none">white desk</span>
-        <span class="tag none">stick vacuum cleaner</span>
-        <span class="tag none">flower</span>
-        <span class="tag none">coffee machine</span>
-        <span class="tag none">white chair</span>
-        <span class="tag none">fire extinguisher</span>
-        <span class="tag none">fridge</span>
+      <div class="tracked-grid">
+        <div class="tracked-item"><div class="tracked-thumb"><img src="objects/robotdog_2f.png" alt="robot dog" loading="lazy" width="600" height="600" /></div><div class="tracked-name">robot dog</div></div>
+        <div class="tracked-item"><div class="tracked-thumb"><img src="objects/bluetotebag.png" alt="blue totebag" loading="lazy" width="600" height="600" /></div><div class="tracked-name">blue totebag</div></div>
+        <div class="tracked-item"><div class="tracked-thumb"><img src="objects/trashbin.png" alt="trashbin" loading="lazy" width="600" height="600" /></div><div class="tracked-name">trashbin</div></div>
+        <div class="tracked-item"><div class="tracked-thumb"><img src="objects/whitedesk.png" alt="white desk" loading="lazy" width="600" height="600" /></div><div class="tracked-name">white desk</div></div>
+        <div class="tracked-item"><div class="tracked-thumb"><img src="objects/stickvacuum.png" alt="stick vacuum cleaner" loading="lazy" width="600" height="600" /></div><div class="tracked-name">stick vacuum cleaner</div></div>
+        <div class="tracked-item"><div class="tracked-thumb"><img src="objects/flower.png" alt="flower" loading="lazy" width="600" height="600" /></div><div class="tracked-name">flower</div></div>
+        <div class="tracked-item"><div class="tracked-thumb"><img src="objects/coffeemachine.png" alt="coffee machine" loading="lazy" width="600" height="600" /></div><div class="tracked-name">coffee machine</div></div>
+        <div class="tracked-item"><div class="tracked-thumb"><img src="objects/whitechair.png" alt="white chair" loading="lazy" width="600" height="600" /></div><div class="tracked-name">white chair</div></div>
+        <div class="tracked-item"><div class="tracked-thumb"><img src="objects/fireextinguisher.png" alt="fire extinguisher" loading="lazy" width="600" height="600" /></div><div class="tracked-name">fire extinguisher</div></div>
+        <div class="tracked-item"><div class="tracked-thumb"><img src="objects/fridge.png" alt="fridge" loading="lazy" width="600" height="600" /></div><div class="tracked-name">fridge</div></div>
       </div>
     </div>
     <div class="group" style="margin-top:10px">
       <div class="group-h">Lab-L</div>
-      <div style="padding:12px;background:var(--card);display:flex;flex-wrap:wrap;gap:8px;">
-        <span class="tag none">brown basket</span>
-        <span class="tag none">potted plant</span>
-        <span class="tag none">green chair</span>
-        <span class="tag none">printer</span>
-        <span class="tag none">robot dog</span>
-        <span class="tag none">silver headphone</span>
-        <span class="tag none">scissor</span>
-        <span class="tag none">sofa</span>
-        <span class="tag none">white board</span>
-        <span class="tag none">vacuum</span>
+      <div class="tracked-grid">
+        <div class="tracked-item"><div class="tracked-thumb"><img src="objects/brownbasket.png" alt="brown basket" loading="lazy" width="600" height="600" /></div><div class="tracked-name">brown basket</div></div>
+        <div class="tracked-item"><div class="tracked-thumb"><img src="objects/plant.png" alt="potted plant" loading="lazy" width="600" height="600" /></div><div class="tracked-name">potted plant</div></div>
+        <div class="tracked-item"><div class="tracked-thumb"><img src="objects/greenchair.png" alt="green chair" loading="lazy" width="600" height="600" /></div><div class="tracked-name">green chair</div></div>
+        <div class="tracked-item"><div class="tracked-thumb"><img src="objects/printer.png" alt="printer" loading="lazy" width="600" height="600" /></div><div class="tracked-name">printer</div></div>
+        <div class="tracked-item"><div class="tracked-thumb"><img src="objects/robotdog_6f.png" alt="robot dog" loading="lazy" width="600" height="600" /></div><div class="tracked-name">robot dog</div></div>
+        <div class="tracked-item"><div class="tracked-thumb"><img src="objects/silverheadphone.png" alt="silver headphone" loading="lazy" width="600" height="600" /></div><div class="tracked-name">silver headphone</div></div>
+        <div class="tracked-item"><div class="tracked-thumb"><img src="objects/scissor.png" alt="scissor" loading="lazy" width="600" height="600" /></div><div class="tracked-name">scissor</div></div>
+        <div class="tracked-item"><div class="tracked-thumb"><img src="objects/sofa.png" alt="sofa" loading="lazy" width="600" height="600" /></div><div class="tracked-name">sofa</div></div>
+        <div class="tracked-item"><div class="tracked-thumb"><img src="objects/whiteboard.png" alt="white board" loading="lazy" width="600" height="600" /></div><div class="tracked-name">white board</div></div>
+        <div class="tracked-item"><div class="tracked-thumb"><img src="objects/vacuum.png" alt="vacuum" loading="lazy" width="600" height="600" /></div><div class="tracked-name">vacuum</div></div>
       </div>
     </div>
   </section>
