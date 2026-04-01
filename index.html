@@ -285,12 +285,13 @@ pre{
   padding:16px;
   min-height:100%;
 }
-.pillar h2{
+.pillar h3{
   margin:0 0 10px;
   padding-bottom:0;
   border-bottom:none;
   font-size:17px;
   line-height:1.25;
+  font-weight:800;
 }
 .pillar p{
   margin:0;
@@ -320,18 +321,21 @@ pre{
 
 <div class="container">
 
-  <section class="pillars" aria-label="Contributions">
-    <div class="pillar">
-      <h2>LT-Mem Framework</h2>
-      <p>A volatility-aware memory evolution framework. Update decisions are governed by a volatility-conditioned reasoning layer, optionally assisted by a constrained LLM, producing a Tri-Memory structure (Live, Delta, Meta) that preserves both current and historical object states.</p>
-    </div>
-    <div class="pillar">
-      <h2>LT-VQA Dataset</h2>
-      <p>A dataset and evaluation suite requiring persistent object identity and structured temporal reasoning across multi-session revisits.</p>
-    </div>
-    <div class="pillar">
-      <h2>Token-Efficient Temporal Reasoning</h2>
-      <p>Volatility-aware evolution improves long-horizon object-centric reasoning over overwrite and accumulation baselines, while reducing token consumption by up to an order of magnitude compared to vision-based approaches.</p>
+  <section aria-labelledby="contributions-heading">
+    <h2 id="contributions-heading">Contributions</h2>
+    <div class="pillars">
+      <div class="pillar">
+        <h3>LT-Mem Framework</h3>
+        <p>A volatility-aware memory evolution framework. Update decisions are governed by a volatility-conditioned reasoning layer, optionally assisted by a constrained LLM, producing a Tri-Memory structure (Live, Delta, Meta) that preserves both current and historical object states.</p>
+      </div>
+      <div class="pillar">
+        <h3>LT-VQA Dataset</h3>
+        <p>A dataset and evaluation suite requiring persistent object identity and structured temporal reasoning across multi-session revisits.</p>
+      </div>
+      <div class="pillar">
+        <h3>Token-Efficient Temporal Reasoning</h3>
+        <p>Volatility-aware evolution improves long-horizon object-centric reasoning over overwrite and accumulation baselines, while reducing token consumption by up to an order of magnitude compared to vision-based approaches.</p>
+      </div>
     </div>
   </section>
 
