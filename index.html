@@ -272,6 +272,31 @@ pre{
   border-top:1px solid var(--line);
 }
 
+.pillars{
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  margin-bottom:8px;
+}
+.pillar{
+  padding:22px 0;
+  border-bottom:1px solid var(--line);
+}
+.pillar:first-child{padding-top:0}
+.pillars .pillar:last-child{border-bottom:none;padding-bottom:0}
+.pillar h2{
+  margin:0 0 10px;
+  padding-bottom:0;
+  border-bottom:none;
+  font-size:22px;
+}
+.pillar p{
+  margin:0;
+  font-size:15px;
+  line-height:1.7;
+  color:var(--fg);
+}
+
 @media (max-width: 900px){
   .stats{grid-template-columns: repeat(2, minmax(0,1fr))}
   .grid{grid-template-columns: repeat(2, minmax(0,1fr))}
@@ -292,9 +317,24 @@ pre{
 
 <div class="container">
 
+  <section class="pillars" aria-label="Contributions">
+    <div class="pillar">
+      <h2>LT-Mem Framework</h2>
+      <p>A volatility-aware memory evolution framework. Update decisions are governed by a volatility-conditioned reasoning layer, optionally assisted by a constrained LLM, producing a Tri-Memory structure (Live, Delta, Meta) that preserves both current and historical object states.</p>
+    </div>
+    <div class="pillar">
+      <h2>LT-VQA Dataset</h2>
+      <p>A dataset and evaluation suite requiring persistent object identity and structured temporal reasoning across multi-session revisits.</p>
+    </div>
+    <div class="pillar">
+      <h2>Token-Efficient Temporal Reasoning</h2>
+      <p>Volatility-aware evolution improves long-horizon object-centric reasoning over overwrite and accumulation baselines, while reducing token consumption by up to an order of magnitude compared to vision-based approaches.</p>
+    </div>
+  </section>
+
   <!-- OVERVIEW -->
   <section>
-    <h2>LT-VQA Dataset</h2>
+    <h2>Dataset overview</h2>
     <p style="font-size:15px;line-height:1.7;margin:0 0 16px">
       LT-VQA is a controlled multi-session dataset for evaluating <strong>long-term object-centric scene understanding</strong>.
       Unlike single-session VQA benchmarks, LT-VQA targets persistent cross-session object identity, event-level state transition annotation,
