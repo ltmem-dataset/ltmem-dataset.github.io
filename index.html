@@ -326,12 +326,6 @@ pre{
     <div class="pillars">
       <div class="pillar">
         <h3>LT-Mem Framework</h3>
-        <img
-          src="figure2.png"
-          alt="LT-Mem pipeline"
-          loading="lazy"
-          style="width:100%; max-height:200px; object-fit:contain; display:block; margin:0 0 12px; border-radius:12px; border:1px solid var(--line); background:#fff;"
-        />
         <p>A volatility-aware memory evolution framework. Update decisions are governed by a volatility-conditioned reasoning layer, optionally assisted by a constrained LLM, producing a Tri-Memory structure (Live, Delta, Meta) that preserves both current and historical object states.</p>
       </div>
       <div class="pillar">
@@ -345,9 +339,23 @@ pre{
     </div>
   </section>
 
+  <!-- LT-mem Framework -->
+  <section>
+    <h2>LT-mem Framework</h2>
+    <img
+      src="figure2.png"
+      alt="LT-Mem pipeline"
+      loading="lazy"
+      style="width:100%; max-width:900px; height:auto; display:block; margin:0 auto 16px; border-radius:12px; border:1px solid var(--line); background:#fff;"
+    />
+    <p style="font-size:15px;line-height:1.7;margin:0 0 16px">
+      A volatility-aware memory evolution framework. Update decisions are governed by a volatility-conditioned reasoning layer, optionally assisted by a constrained LLM, producing a Tri-Memory structure (Live, Delta, Meta) that preserves both current and historical object states.
+    </p>
+  </section>
+
   <!-- OVERVIEW -->
   <section>
-    <h2>Dataset overview</h2>
+    <h2>LT-VQA Dataset</h2>
     <p style="font-size:15px;line-height:1.7;margin:0 0 16px">
       LT-VQA is a controlled multi-session dataset for evaluating <strong>long-term object-centric scene understanding</strong>.
       Unlike single-session VQA benchmarks, LT-VQA targets persistent cross-session object identity, event-level state transition annotation,
