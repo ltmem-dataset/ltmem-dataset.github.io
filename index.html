@@ -14,6 +14,13 @@
   --btn:#f1f1f1;
   --btnHover:#e6e6e6;
   --radius:14px;
+
+  /* Accent palette (Tri-Memory inspired) */
+  --accent:#5b6cff;
+  --accent-soft:#eef0ff;
+  --accent-live:#0ea5a4;
+  --accent-delta:#ef8a17;
+  --accent-meta:#7c3aed;
 }
 
 *{box-sizing:border-box}
@@ -323,6 +330,60 @@ pre{
   line-height:1.65;
   color:var(--fg);
 }
+
+/* === Color accents (overrides applied after base styles) === */
+.hero{
+  background: linear-gradient(180deg, #f6f7ff 0%, #ffffff 100%);
+}
+.venue-badge{
+  background: linear-gradient(90deg, #1f2440 0%, var(--accent) 100%);
+  box-shadow: 0 4px 14px rgba(91,108,255,0.22);
+}
+h1{
+  background: linear-gradient(180deg, transparent 70%, rgba(91,108,255,0.18) 70%);
+  display:inline-block;
+  padding:0 6px;
+}
+h2{
+  border-bottom: 2px solid var(--accent-soft);
+  position:relative;
+  padding-left:14px;
+}
+h2::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:4px;
+  bottom:12px;
+  width:5px;
+  border-radius:3px;
+  background: var(--accent);
+}
+.stat{border-top:3px solid var(--accent)}
+.stat .k{color: var(--accent)}
+
+.pillars .pillar:nth-child(1){border-top:3px solid var(--accent-live)}
+.pillars .pillar:nth-child(2){border-top:3px solid var(--accent-delta)}
+.pillars .pillar:nth-child(3){border-top:3px solid var(--accent-meta)}
+.pillars .pillar:nth-child(1) h3{color: var(--accent-live)}
+.pillars .pillar:nth-child(2) h3{color: var(--accent-delta)}
+.pillars .pillar:nth-child(3) h3{color: var(--accent-meta)}
+
+.env-grid > .env-card:nth-child(1){border-top:3px solid var(--accent-live)}
+.env-grid > .env-card:nth-child(2){border-top:3px solid var(--accent-delta)}
+.env-grid > .env-card:nth-child(3){border-top:3px solid var(--accent-meta)}
+.env-grid > .env-card:nth-child(1) .name{color: var(--accent-live)}
+.env-grid > .env-card:nth-child(2) .name{color: var(--accent-delta)}
+.env-grid > .env-card:nth-child(3) .name{color: var(--accent-meta)}
+
+.btn:hover{border-color: var(--accent); color: var(--accent)}
+.cardlink:hover{border-color: var(--accent)}
+.group-h{background: linear-gradient(90deg, var(--accent-soft) 0%, #ffffff 60%)}
+
+#tab-delta{border-left:3px solid var(--accent-delta)}
+#tab-live{border-left:3px solid var(--accent-live)}
+#tab-meta{border-left:3px solid var(--accent-meta)}
+#bibtex{border-left:3px solid var(--accent)}
 
 @media (max-width: 900px){
   .stats{grid-template-columns: repeat(2, minmax(0,1fr))}
